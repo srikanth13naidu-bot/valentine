@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Sanchitha ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Unique Romantic Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      color: white;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      padding: 35px 30px;
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      text-align: center;
+      max-width: 380px;
+      animation: fadeIn 1.2s ease;
+      z-index: 2;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 40px;
+      margin-bottom: 10px;
+      color: #ffccd5;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #eee;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 26px;
+      border: none;
+      border-radius: 30px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .main-btn {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      box-shadow: 0 5px 20px rgba(118,75,162,0.6);
+    }
+
+    .main-btn:hover {
+      transform: scale(1.07);
+    }
+
+    /* Fullscreen Question */
+    .question-screen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+      z-index: 5;
+    }
+
+    h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 46px;
+      margin-bottom: 30px;
+    }
+
+    /* FIXED BUTTON ALIGNMENT */
+    .buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-top: 10px;
+      position: relative;
+    }
+
+    .yes-btn, .no-btn {
+      min-width: 110px;
+      padding: 12px 0;
+      border-radius: 30px;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .yes-btn {
+      background: linear-gradient(135deg, #43cea2, #185a9d);
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 5px 25px rgba(67,206,162,0.6);
+    }
+
+    .yes-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .no-btn {
+      background: #444;
+      color: white;
+    }
+
+    .no-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 35px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 30px;
+      animation: fadeIn 1s ease;
+      color: #ffccd5;
+    }
+
+    /* Stars */
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      opacity: 0.8;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Celebration Hearts */
+    .burst {
+      position: absolute;
+      font-size: 22px;
+      animation: explode 1s ease forwards;
+    }
+
+    @keyframes explode {
+      to {
+        transform: translate(var(--x), var(--y)) scale(1.8);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Sanchitha ❤️</h1>
+    <p>
+      Happy Valentine’s Day ✨ <br><br>
+      I made something special for you…
+    </p>
+
+    <button class="main-btn" onclick="showQuestion()">Open Surprise 💖</button>
+  </div>
+
+  <div class="question-screen" id="questionScreen">
+    <h2>Will you be my Valentine? ✨</h2>
+
+    <div class="buttons">
+      <button class="yes-btn" onclick="sayYes()">Yes ❤️</button>
+      <button class="no-btn" id="noBtn">No 🙈</button>
+    </div>
+
+    <div class="success-message" id="success">
+      💞 My Valentine, Sanchitha 💞 <br><br>
+      Now my day is perfect 😌✨ <br><br>
+
+      With you, even ordinary moments  
+      feel magical and full of love ❤️ <br><br>
+
+      Thank you for being my forever favorite 💖
+    </div>
+  </div>
+
+  <script>
+    function showQuestion() {
+      document.getElementById("questionScreen").style.display = "flex";
+    }
+
+    function sayYes() {
+      document.getElementById("success").style.display = "block";
+      celebration();
+    }
+
+    // Smooth Runaway NO button
+    const noBtn = document.getElementById("noBtn");
+
+    function moveButton() {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 150 - 75;
+
+      noBtn.style.transition = "transform 0.25s ease";
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    noBtn.addEventListener("mouseenter", moveButton);
+    noBtn.addEventListener("click", moveButton);
+
+    // Stars Background
+    function createStar() {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.animationDuration = (Math.random() * 2 + 1) + "s";
+      document.body.appendChild(star);
+    }
+
+    for (let i = 0; i < 80; i++) createStar();
+
+    // Celebration Effect
+    function celebration() {
+      for (let i = 0; i < 30; i++) {
+        const burst = document.createElement("div");
+        burst.classList.add("burst");
+        burst.innerHTML = "💖";
+
+        const x = (Math.random() - 0.5) * 500 + "px";
+        const y = (Math.random() - 0.5) * 500 + "px";
+
+        burst.style.setProperty('--x', x);
+        burst.style.setProperty('--y', y);
+
+        burst.style.left = "50%";
+        burst.style.top = "50%";
+
+        document.body.appendChild(burst);
+        setTimeout(() => burst.remove(), 1000);
+      }
+    }
+  </script>
+
+</body>
+</html>
