@@ -213,6 +213,55 @@
         opacity: 0;
       }
     }
+
+  .romantic-popup {
+  animation: popupGlow 0.7s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.popup-hearts {
+  font-size: 18px;
+  margin-bottom: 10px;
+  animation: floatHearts 2s ease-in-out infinite;
+}
+
+.love-line {
+  font-size: 16px;
+  opacity: 0.85;
+  margin-bottom: 5px;
+}
+
+.love-main {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffccd5;
+  animation: pulseLove 1.5s infinite;
+}
+
+.popup-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 18px rgba(255, 182, 193, 0.6);
+}
+
+/* Animations */
+@keyframes popupGlow {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes floatHearts {
+  0% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(-6px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.6; }
+}
+
+@keyframes pulseLove {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
   </style>
 </head>
 
@@ -260,7 +309,7 @@ is my favorite thing in the world 😊
 
     <div id="finalMessage" style="display:none;">
       💞 My Valentine, Sanchitha 💞 <br><br>
-      Now my day is perfect 😌✨ <br><br>
+      Now my day is perfect ✨ <br><br>
       With you, even ordinary moments feel magical ❤️ <br><br>
       Thank you for being my forever favorite 💖
     </div>
@@ -268,12 +317,25 @@ is my favorite thing in the world 😊
 </div>
 
 <div class="love-popup" id="lovePopup">
-  <div class="popup-box">
-    <h3>I have one last thing to say… 💌</h3>
-    <p>I Love You, Sanchitha ❤️</p>
-    <button class="main-btn" onclick="closePopup()">Close 💖</button>
+  <div class="popup-box romantic-popup">
+    <div class="popup-hearts">💖 💕 💗</div>
+
+    <h3>Before you go… ✨</h3>
+
+    <p class="love-line">
+      Just one tiny truth from my heart…
+    </p>
+
+    <p class="love-main">
+      I Love You, Sanchitha ❤️
+    </p>
+
+    <button class="main-btn popup-btn" onclick="closePopup()">
+      Forever yours  💖
+    </button>
   </div>
 </div>
+
 
 <script>
   function showQuestion() {
