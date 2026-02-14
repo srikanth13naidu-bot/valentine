@@ -157,6 +157,35 @@
         opacity: 0;
       }
     }
+
+#dealText, #foreverText {
+  font-size: 22px;
+  margin-bottom: 15px;
+  animation: fadeIn 1s ease;
+}
+
+.lock-container {
+  margin: 20px 0;
+  animation: fadeIn 1s ease;
+}
+
+.lock {
+  font-size: 50px;
+  animation: pulse 1.2s infinite;
+}
+
+.unlock-text {
+  font-size: 16px;
+  margin-top: 8px;
+  color: #eee;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
   </style>
 </head>
 
@@ -196,15 +225,30 @@ Because I have something special to ask you…”
     </div>
 
     <div class="success-message" id="success">
-      💞 My Valentine, Sanchitha 💞 <br><br>
-      Now my day is perfect 😌✨ <br><br>
 
-      With you, even ordinary moments  
-      feel magical and full of love ❤️ <br><br>
+  <div id="loveSequence">
 
-      Thank you for being my forever favorite 💖
+    <div id="dealText">💍 Deal sealed… ✨</div>
+    <div id="foreverText">You’re officially my forever Valentine, Sanchitha ❤️</div>
+
+    <div class="lock-container">
+      <div class="lock" id="lock">🔒</div>
+      <div class="unlock-text">Unlocking my heart for you… 💖</div>
     </div>
+
   </div>
+
+  <div id="finalMessage" style="display:none;">
+    💞 My Valentine, Sanchitha 💞 <br><br>
+    Now my day is perfect 😌✨ <br><br>
+
+    With you, even ordinary moments  
+    feel magical and full of love ❤️ <br><br>
+
+    Thank you for being my forever favorite 💖
+  </div>
+
+</div>
 
   <script>
     function showQuestion() {
@@ -263,9 +307,24 @@ Because I have something special to ask you…”
         setTimeout(() => burst.remove(), 1000);
       }
     }
+
+    function sayYes() {
+  document.getElementById("success").style.display = "block";
+  celebration();
+
+  // Sequence timing
+  setTimeout(() => {
+    document.getElementById("lock").innerHTML = "🔓";
+  }, 1800);
+
+  setTimeout(() => {
+    document.getElementById("loveSequence").style.display = "none";
+    document.getElementById("finalMessage").style.display = "block";
+  }, 3500);
+}
+
   </script>
 
 </body>
 </html>
-
 
