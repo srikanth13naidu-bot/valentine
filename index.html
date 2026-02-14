@@ -22,6 +22,8 @@
     }
 
     .card {
+      display: flex;
+      flex-direction: column;
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(12px);
       padding: 35px 30px;
@@ -67,11 +69,10 @@
       transform: scale(1.07);
     }
 
-    /* Question Screen */
     .question-screen {
       position: fixed;
       inset: 0;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* SAME background */
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       display: none;
       justify-content: center;
       align-items: center;
@@ -120,11 +121,61 @@
       font-family: 'Great Vibes', cursive;
       font-size: 30px;
       color: #ffccd5;
-      max-width: 500px;
       animation: fadeIn 1s ease;
     }
 
-    /* Stars */
+    #loveSequence {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #dealText, #foreverText {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .lock {
+      font-size: 50px;
+      animation: pulse 1.2s infinite;
+    }
+
+    .unlock-text {
+      font-size: 16px;
+      margin-top: 8px;
+      color: #eee;
+    }
+
+    .love-popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .popup-box {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      padding: 30px 35px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+
+    .popup-box h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 30px;
+      color: #ffccd5;
+    }
+
+    .popup-box p {
+      font-size: 18px;
+    }
+
     .star {
       position: absolute;
       width: 2px;
@@ -144,7 +195,12 @@
       to { opacity: 1; transform: scale(1); }
     }
 
-    /* Celebration */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
     .burst {
       position: absolute;
       font-size: 22px;
@@ -157,44 +213,14 @@
         opacity: 0;
       }
     }
-
-#dealText, #foreverText {
-  font-size: 22px;
-  margin-bottom: 15px;
-  animation: fadeIn 1s ease;
-}
-
-.lock-container {
-  margin: 20px 0;
-  animation: fadeIn 1s ease;
-}
-
-.lock {
-  font-size: 50px;
-  animation: pulse 1.2s infinite;
-}
-
-.unlock-text {
-  font-size: 16px;
-  margin-top: 8px;
-  color: #eee;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.15); }
-  100% { transform: scale(1); }
-}
-
   </style>
 </head>
 
 <body>
 
-  <!-- FIRST MESSAGE SCREEN -->
-  <div class="card">
-    <h1>Hey Sanchitha ✨</h1>
-    <p>
+<div class="card" id="card">
+  <h1>Hey Sanchitha ✨</h1>
+  <p>
 I know the past one week
 has been a little stressful for you…
 
@@ -207,123 +233,119 @@ Just to remind you…
 
 That your smile
 is my favorite thing in the world 😊
-    </p>
+  </p>
 
-    <button class="main-btn" onclick="showQuestion()">
+  <button class="main-btn" onclick="showQuestion()">
     Feeling a little better now, baby? 💖<br>
-Because I have something special to ask you…”
-    </button>
+    Because I have something special to ask you…
+  </button>
+</div>
+
+<div class="question-screen" id="questionScreen">
+  <h2>Will you be my Valentine? ✨</h2>
+
+  <div class="buttons">
+    <button class="yes-btn" onclick="sayYes()">Yes ❤️</button>
+    <button class="no-btn" id="noBtn">No 🙈</button>
   </div>
 
-  <!-- VALENTINE QUESTION -->
-  <div class="question-screen" id="questionScreen">
-    <h2>Will you be my Valentine? ✨</h2>
+  <div class="success-message" id="success">
+    <div id="loveSequence">
+      <div id="dealText">💍 Deal sealed… ✨</div>
+      <div id="foreverText">You’re officially my forever Valentine, Sanchitha ❤️</div>
 
-    <div class="buttons">
-      <button class="yes-btn" onclick="sayYes()">Yes ❤️</button>
-      <button class="no-btn" id="noBtn">No 🙈</button>
-    </div>
-
-    <div class="success-message" id="success">
-
-  <div id="loveSequence">
-
-    <div id="dealText">💍 Deal sealed… ✨</div>
-    <div id="foreverText">You’re officially my forever Valentine, Sanchitha ❤️</div>
-
-    <div class="lock-container">
-      <div class="lock" id="lock">🔒</div>
+      <div class="lock">🔒</div>
       <div class="unlock-text">Unlocking my heart for you… 💖</div>
     </div>
 
+    <div id="finalMessage" style="display:none;">
+      💞 My Valentine, Sanchitha 💞 <br><br>
+      Now my day is perfect 😌✨ <br><br>
+      With you, even ordinary moments feel magical ❤️ <br><br>
+      Thank you for being my forever favorite 💖
+    </div>
   </div>
-
-  <div id="finalMessage" style="display:none;">
-    💞 My Valentine, Sanchitha 💞 <br><br>
-    Now my day is perfect 😌✨ <br><br>
-
-    With you, even ordinary moments  
-    feel magical and full of love ❤️ <br><br>
-
-    Thank you for being my forever favorite 💖
-  </div>
-
 </div>
 
-  <script>
-    function showQuestion() {
-      document.querySelector(".card").style.display = "none";
-      document.getElementById("questionScreen").style.display = "flex";
+<div class="love-popup" id="lovePopup">
+  <div class="popup-box">
+    <h3>I have one last thing to say… 💌</h3>
+    <p>I Love You, Sanchitha ❤️</p>
+    <button class="main-btn" onclick="closePopup()">Close 💖</button>
+  </div>
+</div>
+
+<script>
+  function showQuestion() {
+    card.style.display = "none";
+    questionScreen.style.display = "flex";
+  }
+
+  function sayYes() {
+    success.style.display = "block";
+    celebration();
+
+    setTimeout(() => {
+      document.querySelector(".lock").innerHTML = "🔓";
+    }, 1800);
+
+    setTimeout(() => {
+      loveSequence.style.display = "none";
+      finalMessage.style.display = "block";
+    }, 3500);
+
+    setTimeout(() => {
+      lovePopup.style.display = "flex";
+    }, 7500);
+  }
+
+  function closePopup() {
+    lovePopup.style.display = "none";
+    questionScreen.style.display = "none";
+    success.style.display = "none";
+    finalMessage.style.display = "none";
+    loveSequence.style.display = "flex";
+    card.style.display = "flex";
+  }
+
+  const noBtn = document.getElementById("noBtn");
+
+  function moveButton() {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 150 - 75;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  }
+
+  noBtn.addEventListener("mouseenter", moveButton);
+  noBtn.addEventListener("click", moveButton);
+
+  function createStar() {
+    const star = document.createElement("div");
+    star.classList.add("star");
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.top = Math.random() * 100 + "vh";
+    document.body.appendChild(star);
+  }
+
+  for (let i = 0; i < 80; i++) createStar();
+
+  function celebration() {
+    for (let i = 0; i < 30; i++) {
+      const burst = document.createElement("div");
+      burst.classList.add("burst");
+      burst.innerHTML = "💖";
+
+      burst.style.setProperty('--x', (Math.random()-0.5)*500 + "px");
+      burst.style.setProperty('--y', (Math.random()-0.5)*500 + "px");
+
+      burst.style.left = "50%";
+      burst.style.top = "50%";
+
+      document.body.appendChild(burst);
+      setTimeout(() => burst.remove(), 1000);
     }
-
-    function sayYes() {
-      document.getElementById("success").style.display = "block";
-      celebration();
-    }
-
-    // Runaway NO button
-    const noBtn = document.getElementById("noBtn");
-
-    function moveButton() {
-      const x = Math.random() * 200 - 100;
-      const y = Math.random() * 150 - 75;
-
-      noBtn.style.transition = "transform 0.25s ease";
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    }
-
-    noBtn.addEventListener("mouseenter", moveButton);
-    noBtn.addEventListener("click", moveButton);
-
-    // Stars
-    function createStar() {
-      const star = document.createElement("div");
-      star.classList.add("star");
-      star.style.left = Math.random() * 100 + "vw";
-      star.style.top = Math.random() * 100 + "vh";
-      star.style.animationDuration = (Math.random() * 2 + 1) + "s";
-      document.body.appendChild(star);
-    }
-
-    for (let i = 0; i < 80; i++) createStar();
-
-    // Celebration
-    function celebration() {
-      for (let i = 0; i < 30; i++) {
-        const burst = document.createElement("div");
-        burst.classList.add("burst");
-        burst.innerHTML = "💖";
-
-        const x = (Math.random() - 0.5) * 500 + "px";
-        const y = (Math.random() - 0.5) * 500 + "px";
-
-        burst.style.setProperty('--x', x);
-        burst.style.setProperty('--y', y);
-
-        burst.style.left = "50%";
-        burst.style.top = "50%";
-
-        document.body.appendChild(burst);
-        setTimeout(() => burst.remove(), 1000);
-      }
-    }
-
-    function sayYes() {
-  document.getElementById("success").style.display = "block";
-  celebration();
-
-  // Sequence timing
-  setTimeout(() => {
-    document.getElementById("lock").innerHTML = "🔓";
-  }, 1800);
-
-  setTimeout(() => {
-    document.getElementById("loveSequence").style.display = "none";
-    document.getElementById("finalMessage").style.display = "block";
-  }, 3500);
-}
-
-  </script>
+  }
+</script>
 
 </body>
 </html>
